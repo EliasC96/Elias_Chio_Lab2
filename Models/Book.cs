@@ -6,7 +6,7 @@ namespace Elias_Chio_Lab2.Models
 {
     public class Book
     {
-        public int Id { get; set; }
+        public int ID { get; set; }
 
 
         [Display(Name = "Book Title")]
@@ -26,6 +26,9 @@ namespace Elias_Chio_Lab2.Models
 
         public int? AuthorID { get; set; }
         public Author? Author { get; set; } //navigation property
+
+        public ICollection<BookCategory>? BookCategories { get; set; }  //navigation property
+
     }
 
 
