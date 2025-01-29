@@ -27,6 +27,7 @@ namespace Elias_Chio_Lab2.Pages.Books
 
         public async Task OnGetAsync(int? id, int? categoryID)
         {
+            BookD = new BookData();
             Book = await _context.Book
                 .Include(b => b.Publisher)
                 .Include(b => b.Author)
@@ -36,12 +37,20 @@ namespace Elias_Chio_Lab2.Pages.Books
                 .OrderBy(b => b.Title)
                 .ToListAsync();
 
-            if (id != null)
+            if (BookD == null)
             {
-                BookID = id.Value;
-                Book book = BookD.Books
-                .Where(i => i.ID == id.Value).Single();
-                BookD.Categories = book.BookCategories.Select(s => s.Category);
+                BookD = new BookData
+                {
+                    Books = Book
+                };
+
+                if (id != null)
+                {
+                    BookID = id.Value;
+                    Book book = BookD.Books
+                    .Where(i => i.ID == id.Value).Single();
+                    BookD.Categories = book.BookCategories.Select(s => s.Category);
+                }
             }
         }
     }

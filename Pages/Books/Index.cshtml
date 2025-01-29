@@ -82,6 +82,11 @@
                 <a asp-page="./Delete" asp-route-id="@item.ID">Delete</a>
             </td>
         </tr>
-}
+        }
+        }
+        else
+        {
+        <tr><td colspan="7">No books found.</td></tr>
+        }
     </tbody>
 </table>
